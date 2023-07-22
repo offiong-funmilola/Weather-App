@@ -25,7 +25,6 @@ export const WeatherProvider = ({children}) => {
             body: JSON.stringify(!isEmpty(location) ? location : storedLocation)
         }).then(res => res.json())
         .then(data => {
-            console.log(data)
             if (data.cod !== "200" && data.cod !== 200) {
                 toast(firstLetterUpper(data.message))
                 return
@@ -70,8 +69,15 @@ export const WeatherProvider = ({children}) => {
         setIsLoading(false)
     }, []);
 
+    const handleReset = () => {
+        localStorage.setItem('geoData', '{}');
+        localStorage.setItem('storedLocation', '{}');
+        setGeoData({})
+        setLocation({})
+    };
+
     return (
-        <WeatherContext.Provider value={{location, setLocation, handleSubmit, geoData, storedLocation, isLoading, firstLetterUpper, isEmpty}}>
+        <WeatherContext.Provider value={{location, setLocation, handleSubmit, handleReset, geoData, storedLocation, isLoading, firstLetterUpper, isEmpty}}>
             {children}
         </WeatherContext.Provider>
     )

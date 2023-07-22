@@ -25,7 +25,6 @@ function Main() {
             return (<MdSunny className='text-white text-12xl'/>)
         }
     }
-    console.log(geoData)
     return (
         <Fragment>
             {isLoading &&
@@ -47,7 +46,7 @@ function Main() {
                     <div className='row-start-1 row-end-7 col-start-1 col-end-5 bg-gradient-to-r bg-cyan-600 to-cyan-200 rounded-lg'>
                         <div className='w-full h-10 bg-cyan-900 rounded-t-lg flex justify-around items-center gap-1 px-5'>
                             <div className='w-4/5'>
-                                <p className='font-sans text-lg font-bold text-white'>{storedLocation.city}, {storedLocation.country}</p>
+                                <p className='font-sans text-lg font-bold text-white'>{storedLocation.city}{storedLocation.country ? `, ${storedLocation.country}` : ''}</p>
                             </div>
                             <button className="button" onClick={handleSubmit}>
                                 <MdRefresh className='text-white text-xl'/>
@@ -67,10 +66,9 @@ function Main() {
                             </div>
                         </div>
                     </div>  
-                    {/* <div className='row-start-4 row-end-7 col-start-1 col-end-5 bg-white rounded-lg'></div> */}
                     <div className='row-start-1 row-end-7 col-span-6 bg-white rounded-lg grid grid-cols-1 grid-rows-4 gap-2 pt-1'>
                         <div className='row-span-1'>
-                            <h3 className='font-sans text-xl font-semibold ml-5'>Weather Today in {storedLocation.city}, {storedLocation.country}</h3>
+                            <h3 className='font-sans text-xl font-semibold ml-5'>Weather Today in {storedLocation.city}{storedLocation.country ? `, ${storedLocation.country}` : ''}</h3>
                             <h1 className='font-sans text-4xl font-bold ml-7'>{geoData.main.feels_like}<sup>o</sup></h1>
                             <p className='font-sans text-xl ml-7'>Feels Like</p>
                         </div>
