@@ -4,7 +4,8 @@
   "description": "weather app server",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "netlify-lambda build"
   },
   "author": "Funmi",
   "license": "ISC",

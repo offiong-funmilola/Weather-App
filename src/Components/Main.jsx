@@ -34,10 +34,10 @@ function Main() {
             }
             {isEmpty(geoData) && !isLoading &&
                 <div className='w-full h-body flex items-center justify-center'>
-                    <form onSubmit={handleSubmit} className='w-1/3 h-8 relative bg-white rounded-full border flex justify-center'>
-                        <input type='text' placeholder='Search City' className='w-36 text-lg bg-inherit focus:outline-none' value={location.city || ''} onChange={(e)=>{setLocation({...location, city: e.target.value})}}></input>
-                        <input type='text' placeholder='Country' className='w-36 text-lg bg-inherit focus:outline-none' value={location.country || ''} onChange={(e)=>{setLocation({...location, country: e.target.value})}}></input>
-                        <button className='absolute top-0 right-5 translate-y-2 text-black' type="submit"><FaSearch /></button>  
+                    <form onSubmit={handleSubmit} className='w-4/5 md:w-1/3 h-12 relative bg-white rounded-full border flex justify-center'>
+                        <input type='text' placeholder='Search City' className='w-24 md:w-36 text-lg bg-inherit focus:outline-none' value={location.city || ''} onChange={(e)=>{setLocation({...location, city: e.target.value})}}></input>
+                        <input type='text' placeholder='Country' className='w-24 md:w-36 text-lg bg-inherit focus:outline-none' value={location.country || ''} onChange={(e)=>{setLocation({...location, country: e.target.value})}}></input>
+                        <button className='absolute top-0 right-5 translate-y-3 text-black' type="submit"><FaSearch /></button>  
                     </form> 
                 </div>           
             }

@@ -1,11 +1,18 @@
+'use strict';
 require('dotenv').config();
+const serverless = require('serverless-http');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 
+const DEVELOPMENT = "DEVELOPMENT";
+const PRODUCTION = "PRODUCTION";
+
 const PORT = process.env.PORT || 3050;
 const API_KEY = process.env.REACT_APP_API_KEY
+const IS_NETLIFY = process.env.NETLIFY;
+const ENVIRONMENT = process.env.ENVIRONMENT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -28,17 +35,12 @@ app.post('/weather-data', (req, res) => {
     })
 });
 
-app.listen(PORT, () => {
-    console.log("App started on port " + PORT);
-});
+if (ENVIRONMENT === PRODUCTION) {
+    module.exports.handler = serverless(app);
+}
 
-// Universal Resource Locator
-// URL parts
-// https://www.google.com/search?client=firefox-b-d&q=create+simple+express+api
-// protocol - https (http)
-// host - www.google.com (domain, subdomain)
-// port - (http - 80, https - 443, 3050)
-// path - search
-// query - client=firefox-b-d&q=create+simple+express+api ({"client": "firefix-b-d", "q": "create+simple+express+api"})
-// body - (POST, PUT, PATCH)
-// non-idempotent 
+if (ENVIRONMENT === DEVELOPMENT) {
+    app.listen(PORT, () => {
+        console.log("App started on port " + PORT);
+    });    
+}
