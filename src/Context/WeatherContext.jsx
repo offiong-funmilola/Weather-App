@@ -2,7 +2,12 @@ import React from "react";
 import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
-const WeatherContext = createContext()
+const WeatherContext = createContext();
+
+const API_ENDPOINT = "http://localhost:3050"
+if (ENVIRONMENT === PRODUCTION) {
+    API_ENDPOINT = `${window.location.href}/api`
+}
 
 export const WeatherProvider = ({children}) => {
     const [location, setLocation] = useState({})
@@ -16,7 +21,7 @@ export const WeatherProvider = ({children}) => {
             return
         }
 
-        fetch(`http://localhost:3050/weather-data`, {
+        fetch(`${API_ENDPOINT}/weather-data`, {
             method: 'POST',
             mode: 'cors',
             headers: {
