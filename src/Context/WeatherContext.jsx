@@ -2,6 +2,7 @@ import React from "react";
 import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
+const PRODUCTION = "PRODUCTION";
 const WeatherContext = createContext();
 const ENVIRONMENT = process.env.ENVIRONMENT;
 const API_ENDPOINT = "http://localhost:3050"
