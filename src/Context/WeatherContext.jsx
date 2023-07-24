@@ -6,6 +6,8 @@ const PRODUCTION = "PRODUCTION";
 const WeatherContext = createContext();
 const ENVIRONMENT = process.env.ENVIRONMENT;
 let API_ENDPOINT = "http://localhost:3050"
+console.log(ENVIRONMENT)
+console.log(process.env)
 
 if (ENVIRONMENT === PRODUCTION) {
     API_ENDPOINT = `${window.location.href}/api`
