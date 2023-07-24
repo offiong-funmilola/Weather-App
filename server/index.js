@@ -11,7 +11,6 @@ const PRODUCTION = "PRODUCTION";
 
 const PORT = process.env.PORT || 3050;
 const API_KEY = process.env.REACT_APP_API_KEY
-const IS_NETLIFY = process.env.NETLIFY;
 const ENVIRONMENT = process.env.ENVIRONMENT;
 
 app.use(bodyParser.urlencoded({ extended: false }));

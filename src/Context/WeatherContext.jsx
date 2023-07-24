@@ -3,8 +3,9 @@ import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
 const WeatherContext = createContext();
-
+const ENVIRONMENT = process.env.ENVIRONMENT;
 const API_ENDPOINT = "http://localhost:3050"
+
 if (ENVIRONMENT === PRODUCTION) {
     API_ENDPOINT = `${window.location.href}/api`
 }
