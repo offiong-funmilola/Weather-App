@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const PRODUCTION = "PRODUCTION";
 const WeatherContext = createContext();
 const ENVIRONMENT = process.env.ENVIRONMENT;
-const API_ENDPOINT = "http://localhost:3050"
+let API_ENDPOINT = "http://localhost:3050"
 
 if (ENVIRONMENT === PRODUCTION) {
     API_ENDPOINT = `${window.location.href}/api`
