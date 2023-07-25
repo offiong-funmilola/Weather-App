@@ -1,6 +1,6 @@
 import React, { useContext, Fragment } from 'react'
 import {FaSearch, FaCloudShowersHeavy } from 'react-icons/fa'
-import WeatherContext from '../../../../weather-app/src/Context/WeatherContext'
+import WeatherContext from '../Context/WeatherContext'
 import {MdOutlineCompress, MdSouth, MdVisibility, MdAir, MdDeviceThermostat, MdOutlineInvertColors, MdSunny, MdWbCloudy, MdRefresh} from "react-icons/md";
 import {GiNightSky} from "react-icons/gi";
 const RAIN = 'rain'
