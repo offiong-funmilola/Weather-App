@@ -2,16 +2,17 @@ import React from "react";
 import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
-const PRODUCTION = "PRODUCTION";
 const WeatherContext = createContext();
-const ENVIRONMENT = process.env.ENVIRONMENT;
-let API_ENDPOINT = "http://localhost:3050"
-console.log(ENVIRONMENT)
-console.log(process.env)
 
-if (ENVIRONMENT === PRODUCTION) {
-    API_ENDPOINT = `${window.location.href}/api`
-}
+// const PRODUCTION = "PRODUCTION";
+// const ENVIRONMENT = process.env.ENVIRONMENT;
+// let API_ENDPOINT = "http://localhost:3050"
+// console.log(ENVIRONMENT)
+// console.log(process.env)
+
+// if (ENVIRONMENT === PRODUCTION) {
+//     API_ENDPOINT = `${window.location.href}/api`
+// }
 
 export const WeatherProvider = ({children}) => {
     const [location, setLocation] = useState({})
@@ -25,13 +26,15 @@ export const WeatherProvider = ({children}) => {
             return
         }
 
-        fetch(`${API_ENDPOINT}/weather-data`, {
-            method: 'POST',
+        let parameters = !isEmpty(location) ? location : storedLocation
+        let urlParams = new URLSearchParams(parameters).toString()
+
+        fetch(`/weather-data?${urlParams}`, {
+            method: 'GET',
             mode: 'cors',
             headers: {
                 "Content-Type": "application/json",
-            },
-            body: JSON.stringify(!isEmpty(location) ? location : storedLocation)
+            }
         }).then(res => res.json())
         .then(data => {
             if (data.cod !== "200" && data.cod !== 200) {

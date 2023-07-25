@@ -1,12 +1,11 @@
 import React from 'react'
 import globe from './Assets/globe.jpeg'
 import {FaSearch} from 'react-icons/fa'
-import {RxReset} from 'react-icons/rx'
 import WeatherContext from '../Context/WeatherContext'
 import {useContext} from 'react'
 
 function Menu() {
-    const {location, setLocation, isLoading, handleSubmit, handleReset, geoData, isEmpty} = useContext(WeatherContext)
+    const {location, setLocation, isLoading, handleSubmit, geoData, isEmpty} = useContext(WeatherContext)
   return (
     <nav className='w-full bg-blue-950 flex items-center justify-between p-5 h-menu'>
         <div className='w-20 h-15 text-white bg-inherit'>The Weather Channel</div>
@@ -17,15 +16,11 @@ function Menu() {
                 <button className='absolute top-0 right-5 translate-y-2 text-white' type="submit"><FaSearch /></button>  
             </form>
         }
-        <div className='w-40 h-10 bg-inherit flex items-center justify-around'>
+        <div className='w-32 h-10 bg-inherit flex items-center justify-around'>
             <div className='w-8 h-8'><img src={globe} alt=''/></div>
             <p className='text-white text-lg'>Globe</p>
-            <div className='h-5 border border-white mx-2'></div>
+            <div className='h-5 border border-white'></div>
             <p className='text-white text-lg'><sup>o</sup>C</p>
-            <div className='h-5 border border-white mx-2'></div>
-            <button className="button" onClick={handleReset}>
-                <RxReset className='text-white text-xl ml-3'/>
-            </button>
         </div>
     </nav>
   )

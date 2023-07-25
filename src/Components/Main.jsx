@@ -1,6 +1,6 @@
 import React, { useContext, Fragment } from 'react'
 import {FaSearch, FaCloudShowersHeavy } from 'react-icons/fa'
-import WeatherContext from '../Context/WeatherContext'
+import WeatherContext from '../../../../weather-app/src/Context/WeatherContext'
 import {MdOutlineCompress, MdSouth, MdVisibility, MdAir, MdDeviceThermostat, MdOutlineInvertColors, MdSunny, MdWbCloudy, MdRefresh} from "react-icons/md";
 import {GiNightSky} from "react-icons/gi";
 const RAIN = 'rain'
@@ -25,6 +25,7 @@ function Main() {
             return (<MdSunny className='text-white text-12xl'/>)
         }
     }
+    
     return (
         <Fragment>
             {isLoading &&
@@ -34,7 +35,7 @@ function Main() {
             }
             {isEmpty(geoData) && !isLoading &&
                 <div className='w-full h-body flex items-center justify-center'>
-                    <form onSubmit={handleSubmit} className='w-4/5 md:w-1/3 h-12 relative bg-white rounded-full border flex justify-center'>
+                    <form onSubmit={handleSubmit} className='w-4/5 md:w-1/3 h-14 relative bg-white rounded-full border flex justify-center'>
                         <input type='text' placeholder='Search City' className='w-24 md:w-36 text-lg bg-inherit focus:outline-none' value={location.city || ''} onChange={(e)=>{setLocation({...location, city: e.target.value})}}></input>
                         <input type='text' placeholder='Country' className='w-24 md:w-36 text-lg bg-inherit focus:outline-none' value={location.country || ''} onChange={(e)=>{setLocation({...location, country: e.target.value})}}></input>
                         <button className='absolute top-0 right-5 translate-y-3 text-black' type="submit"><FaSearch /></button>  
@@ -46,7 +47,7 @@ function Main() {
                     <div className='row-start-1 row-end-7 col-start-1 col-end-5 bg-gradient-to-r bg-cyan-600 to-cyan-200 rounded-lg'>
                         <div className='w-full h-10 bg-cyan-900 rounded-t-lg flex justify-around items-center gap-1 px-5'>
                             <div className='w-4/5'>
-                                <p className='font-sans text-lg font-bold text-white'>{storedLocation.city}{storedLocation.country ? `, ${storedLocation.country}` : ''}</p>
+                                <p className='font-sans text-lg font-bold text-white'>{geoData.name}, {storedLocation.country}</p>
                             </div>
                             <button className="button" onClick={handleSubmit}>
                                 <MdRefresh className='text-white text-xl'/>
@@ -66,9 +67,10 @@ function Main() {
                             </div>
                         </div>
                     </div>  
+                    {/* <div className='row-start-4 row-end-7 col-start-1 col-end-5 bg-white rounded-lg'></div> */}
                     <div className='row-start-1 row-end-7 col-span-6 bg-white rounded-lg grid grid-cols-1 grid-rows-4 gap-2 pt-1'>
                         <div className='row-span-1'>
-                            <h3 className='font-sans text-xl font-semibold ml-5'>Weather Today in {storedLocation.city}{storedLocation.country ? `, ${storedLocation.country}` : ''}</h3>
+                            <h3 className='font-sans text-xl font-semibold ml-5'>Weather Today in {geoData.name}, {storedLocation.country}</h3>
                             <h1 className='font-sans text-4xl font-bold ml-7'>{geoData.main.feels_like}<sup>o</sup></h1>
                             <p className='font-sans text-xl ml-7'>Feels Like</p>
                         </div>
