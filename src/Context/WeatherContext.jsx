@@ -29,7 +29,7 @@ export const WeatherProvider = ({children}) => {
         let parameters = !isEmpty(location) ? location : storedLocation
         let urlParams = new URLSearchParams(parameters).toString()
 
-        fetch(`/weather-data?${urlParams}`, {
+        fetch(`/api/weather-data?${urlParams}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
