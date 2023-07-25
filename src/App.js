@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <WeatherProvider>
-      <div className="w-full h-screen bg-hero-pattern bg-cover bg-no-repeat">
+      <div className="w-full h-screen bg-hero-pattern bg-cover bg-no-repeat content-container">
         <ToastContainer />
         <Menu/>
         <Main/>

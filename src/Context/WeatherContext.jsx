@@ -3,16 +3,8 @@ import { createContext, useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
 const WeatherContext = createContext();
-
-// const PRODUCTION = "PRODUCTION";
-// const ENVIRONMENT = process.env.ENVIRONMENT;
-// let API_ENDPOINT = "http://localhost:3050"
-// console.log(ENVIRONMENT)
-// console.log(process.env)
-
-// if (ENVIRONMENT === PRODUCTION) {
-//     API_ENDPOINT = `${window.location.href}/api`
-// }
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || ''
+console.log(API_ENDPOINT)
 
 export const WeatherProvider = ({children}) => {
     const [location, setLocation] = useState({})
@@ -29,7 +21,7 @@ export const WeatherProvider = ({children}) => {
         let parameters = !isEmpty(location) ? location : storedLocation
         let urlParams = new URLSearchParams(parameters).toString()
 
-        fetch(`/api/weather-data?${urlParams}`, {
+        fetch(`${API_ENDPOINT}/api/weather-data?${urlParams}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
